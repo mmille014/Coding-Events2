@@ -1,5 +1,6 @@
 package org.launchcode.codingevents.controllers;
 
+import com.sun.java.accessibility.util.EventID;
 import org.launchcode.codingevents.data.EventData;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -54,5 +55,20 @@ public class EventController {
         }
         return "redirect:";
     }
-
+    //Create a method to display an edit form with this signature:
+    @GetMapping("edit/{eventID}")
+    public String displayEditForm(Model model, @PathVariable int EventID) {
+        model.addAttribute("title", "Edit Event " + EventData.getById(EventID).);
+        model.addAttribute(("events", EventData.getById(EventID));
+        System.out.println("displayEditForm method reached");
+        return "events/edit";
+    }
+    //Create a method to process the form with this signature:
+    @PostMapping("edit")
+    public String processEditForm(int EventId, String name, String description) {
+        System.out.println("processEditForm method reached");
+        EventData.getById(EventId).setName(name);
+        EventData.getById(EventId).setDescription(description);
+        return "redirect:";
+    }
 }
