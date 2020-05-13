@@ -8,12 +8,12 @@
 <form method="post" th:action="@{/events/edit}">
     <div class="form-group">
         <label>Name
-            <input type="text" name="name" th:placeholder="${event.name}" class="form-control">
+            <input type="text" name="name" th:value="${event.name}" class="form-control">
         </label>
     </div>
     <div class="form-group">
         <label>Description
-            <input type="text" name="description" th:placeholder="${event.description}" class="form-control">
+            <input type="text" name="description" th:value="${event.description}" class="form-control">
         </label>
     </div>
     <div class="form-group">
