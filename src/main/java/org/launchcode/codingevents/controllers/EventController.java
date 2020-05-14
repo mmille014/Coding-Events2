@@ -56,19 +56,23 @@ public class EventController {
         return "redirect:";
     }
     //Create a method to display an edit form with this signature:
-    @GetMapping("edit/{eventID}")
-    public String displayEditForm(Model model, @PathVariable int EventID) {
-        model.addAttribute("title", "Edit Event " + EventData.getById(EventID).);
-        model.addAttribute(("events", EventData.getById(EventID));
-        System.out.println("displayEditForm method reached");
+    @GetMapping("edit/{eventId}")
+    public String displayEditForm(Model model, @PathVariable int eventId) {
+        Event eventToEdit = EventData.getById(eventId);
+        model.addAttribute("Event", eventToEdit);
+        String title = "Edit Event " + eventToEdit.getName() + " (id=" + eventToEdit.getId() + ")";
+        model.addAttribute("title", title);
+
         return "events/edit";
     }
+
     //Create a method to process the form with this signature:
     @PostMapping("edit")
-    public String processEditForm(int EventId, String name, String description) {
-        System.out.println("processEditForm method reached");
-        EventData.getById(EventId).setName(name);
-        EventData.getById(EventId).setDescription(description);
-        return "redirect:";
+    public String processEditForm(int eventId, String name, String description) {
+        Event eventToEdit = EventData.getById(eventId);
+        eventToEdit.setName(name);
+        eventToEdit.setDescription(description);
+
+        return "redirect";
     }
 }
